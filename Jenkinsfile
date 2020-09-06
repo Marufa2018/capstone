@@ -17,7 +17,7 @@ node {
     }
     stage('Building image blue') {
 	    echo 'Building Docker image blue...'
-      withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'Docker_2020', usernameVariable: 'mars20')]) {
+      withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
 	     	sh "sudo docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
 	     	sh "sudo docker build -t ${registry1} blue/."
 	     	sh "sudo docker tag ${registry1} ${registry1}"
@@ -26,7 +26,7 @@ node {
     }
     stage('Building image green') {
 	    echo 'Building Docker image green...'
-      withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'Docker_2020', usernameVariable: 'maes20')]) {
+      withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
 	     	sh "sudo docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
 	     	sh "sudo docker build -t ${registry2} green/."
 	     	sh "sudo docker tag ${registry2} ${registry2}"
