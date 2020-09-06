@@ -13,8 +13,8 @@ pipeline {
     }
     stage('Build Docker Image') {
       steps {
-        sh 'docker build -t mars20/testblueimage .'
-        sh 'docker build -t mars20/testgreenimage .'
+        sh 'docker build -t mars20/testblueimage blue/.'
+        sh 'docker build -t mars20/testgreenimage green/.'
       }
     }
     stage('Push Docker Image') {
