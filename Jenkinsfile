@@ -36,6 +36,7 @@ pipeline {
             sh "kubectl apply -f ./blue-green-service.json"
             sh "kubectl get nodes"
             sh "kubectl get pods"
+          }
         }
       }
     }
