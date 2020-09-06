@@ -29,7 +29,7 @@ pipeline {
     stage('Deployment') {
       steps {
        dir ('./') {
-        withAWS(credentials: 'C3User') {
+        withAWS(credentials: 'aws') {
             sh "kubectl apply -f blue/blue-controller.json"
             sh "kubectl apply -f green/green-controller.json"
             sh "kubectl apply -f ./blue-green-service.json"
