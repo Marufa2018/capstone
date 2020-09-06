@@ -13,9 +13,7 @@ node {
     }
     stage("Linting") {
       echo 'Linting...'
-      steps {
         sh 'tidy -q -e index.html'
-      }
     }
     stage('Building image blue') {
 	    echo 'Building Docker image blue...'
