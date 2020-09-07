@@ -27,9 +27,9 @@ pipeline {
       }
     }
     stage('Deployment') {
-      steps {
+      node {
        dir ('./') {
-        withAWS(credentials: 'C3User', region: 'us-west-2') {
+        withAWS(credentialsId: 'C3User', region: 'us-west-2') {
             sh "kubectl apply -f blue/blue-controller.json"
             sh "kubectl apply -f green/green-controller.json"
             sh "kubectl apply -f ./blue-green-service.json"
