@@ -28,7 +28,7 @@ node {
     stage('Deploying to AWS EKS') {
       echo 'Deploying to AWS EKS...'
       dir ('./') {
-        withKubeConfig(credentialsId: 'C3User') {
+        withCredentials(credentialsId: 'C3User') {
             sh '"aws eks update-kubeconfig --name pod"'
             sh "kubectl apply -f blue/blue-controller.json"
             sh "kubectl apply -f green/green-controller.json"
