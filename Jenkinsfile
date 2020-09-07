@@ -29,7 +29,6 @@ node {
       echo 'Deploying to AWS EKS...'
       dir ('./') {
         withAWS(credentials: 'C3User', region: 'us-west-2') {
-            sh "aws eks --region us-west-2 update-kubeconfig --name pod"
             sh "kubectl config use-context arn:aws:eks:us-west-2:162820765636:cluster/pod"
             sh "kubectl apply -f blue/blue-controller.json"
             sh "kubectl apply -f green/green-controller.json"
