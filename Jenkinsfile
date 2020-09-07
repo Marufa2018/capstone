@@ -28,7 +28,7 @@ node {
     stage('Deploying to AWS EKS') {
       echo 'Deploying to AWS EKS...'
       dir ('./') {
-        withAWS(credentials: 'C3User', region: 'us-west-2') {
+        withAWS(credentials: 'C3User') {
             sh "aws eks update-kubeconfig --name pod"
             sh "kubectl get svc"
         }
