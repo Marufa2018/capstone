@@ -29,7 +29,6 @@ node {
       echo 'Deploying to AWS EKS...'
       dir ('./') {
         withAWS(credentials: 'C3User') {
-            sh "aws eks update-kubeconfig --name pod"
             sh "kubectl get svc"
         }
       }
