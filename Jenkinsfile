@@ -26,17 +26,19 @@ pipeline {
         }
       }
     }
-    stage('Deployment') {
-      steps {
-       dir ('./') {
-        withAWS(credentials: 'C3User', region: 'us-west-2') { 
-            sh "kubectl config view -o jsonpath='{.current-context}'"
-            sh "kubectl apply -f blue/blue-controller.json"
-            sh "kubectl apply -f green/green-controller.json"
-            sh "kubectl apply -f ./blue-green-service.json"
-            sh "kubectl get nodes"
-            sh "kubectl get pods"
-          }
+    node{
+      stage('Deployment') {
+        steps {
+        dir ('./') {
+          withAWS(credentials: 'C3User', region: 'us-west-2') { 
+              sh "kubectl config view -o jsonpath='{.current-context}'"
+              sh "kubectl apply -f blue/blue-controller.json"
+              sh "kubectl apply -f green/green-controller.json"
+              sh "kubectl apply -f ./blue-green-service.json"
+              sh "kubectl get nodes"
+              sh "kubectl get pods"
+            }
+          }   
         }
       }
     }
