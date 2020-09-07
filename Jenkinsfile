@@ -30,7 +30,8 @@ pipeline {
       steps {
        dir ('./') {
         withAWS(credentials: 'C3User', region: 'us-west-2') {
-            sh "kubectl config use-context pod --insecure-skip-tls-verify=true"
+            sh "kubectl config set-context pod --cluster=pod --insecure-skip-tls-verify=true"
+            sh "kubectl config use-context pod"
             sh "kubectl apply -f blue/blue-controller.json"
             sh "kubectl apply -f green/green-controller.json"
             sh "kubectl apply -f ./blue-green-service.json"
