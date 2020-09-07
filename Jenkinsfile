@@ -15,9 +15,10 @@ node {
       echo 'Linting...'
       sh 'tidy -q -e index.html'
     }
-    stage('Building image blue') {
+     stage('Building image blue') {
 	    echo 'Building Docker image blue...'
-      withDockerRegistry([url: "", credentialsId: "dockerhub"]){
+      withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+	     	sh "sudo docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
 	     	sh "sudo docker build -t ${registry1} blue/."
 	     	sh "sudo docker tag ${registry1} ${registry1}"
 	     	sh "sudo docker push ${registry1}"
@@ -25,7 +26,8 @@ node {
     }
     stage('Building image green') {
 	    echo 'Building Docker image green...'
-      withDockerRegistry([url: "", credentialsId: "dockerhub"]) {
+      withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+	     	sh "sudo docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
 	     	sh "sudo docker build -t ${registry2} green/."
 	     	sh "sudo docker tag ${registry2} ${registry2}"
 	     	sh "sudo docker push ${registry2}"
