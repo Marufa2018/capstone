@@ -1,4 +1,4 @@
-pipeline {
+node {
   agent any
   stages {
     stage('build') {
@@ -26,9 +26,8 @@ pipeline {
         }
       }
     }
-    node{
-      stage('Deployment') {
-        steps {
+    stage('Deployment') {
+      steps {
         dir ('./') {
           withAWS(credentials: 'C3User', region: 'us-west-2') { 
               sh "kubectl config view -o jsonpath='{.current-context}'"
