@@ -27,9 +27,12 @@ pipeline {
       }
     }
     stage('Deployment') {
-      node {
+      steps {
        dir ('./') {
         withAWS(credentialsId: 'C3User', region: 'us-west-2') {
+            sh "kubectl config set-cluster minikube --server=https://127.0.0.1:8443 --insecure-skip-tls-verify=true"
+            sh "kubectl config set-context minikube --cluster=minikube --user=minikube"
+            sh "kubectl config use-context minikube"
             sh "kubectl apply -f blue/blue-controller.json"
             sh "kubectl apply -f green/green-controller.json"
             sh "kubectl apply -f ./blue-green-service.json"
