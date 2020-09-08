@@ -28,8 +28,6 @@ node {
       dir ('./') {
         withAWS(credentials: 'C3User', region: 'us-east-2') {
             sh "kubectl config current-context"
-            sh "kubectl apply -f blue/blue-controller.json"
-            sh "kubectl apply -f green/green-controller.json"
             sh "kubectl apply -f ./blue-green-service.json"
             sh "kubectl get nodes"
             sh "kubectl get pods"
