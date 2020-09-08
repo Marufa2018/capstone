@@ -27,9 +27,8 @@ node {
       echo 'Deploying to AWS EKS...'
       dir ('./') {
         withAWS(credentials: 'C3User', region :'us-east-2') {
-            sh "kubectl config set-context 'kubectl current context'"
-            sh 'kubectl get-context'
-            sh "kubectl apply -f ./blue-controller.json"
+            sh "kubectl config current-context"
+            sh "kubectl get services"
         }
       }
     }
