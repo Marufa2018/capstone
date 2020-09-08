@@ -1,4 +1,3 @@
-{
   "AWSTemplateFormatVersion": "2010-09-09",
   "Description": "EKS nodes (AMI family: AmazonLinux2, SSH access: false, private networking: false) [created and managed by eksctl]",
   "Mappings": {
@@ -308,4 +307,3 @@
       }
     }
   }
-}

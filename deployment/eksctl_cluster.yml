@@ -1,4 +1,3 @@
-{
   "AWSTemplateFormatVersion": "2010-09-09",
   "Description": "EKS cluster (dedicated VPC: true, dedicated IAM: true) [created and managed by eksctl]",
   "Mappings": {
@@ -786,4 +785,3 @@
       }
     }
   }
-}
