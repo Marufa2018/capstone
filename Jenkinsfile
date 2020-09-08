@@ -29,6 +29,7 @@ node {
       echo 'Deploying to AWS EKS...'
       dir ('./') {
         withAWS(credentials: 'C3User', region: 'us-west-2') {
+            sh "kubernetesDeploy deployment/eks_cluster.sh"
             sh "kubectl config view -o jsonpath='{.current-context}'"
             sh "kubectl apply -f blue/blue-controller.json"
             sh "kubectl apply -f green/green-controller.json"
