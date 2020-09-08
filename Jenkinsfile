@@ -23,13 +23,12 @@ node {
           sh 'docker push mars20/testgreenimage'
       }
     }
-    stage('Deploying to AWS EKS') {
-      echo 'Deploying to AWS EKS...'
-      dir ('./') {
+    stage('Kubernetes Cluster') {
+      echo 'Kubernetes Cluster Listing...'
         withAWS(credentials: 'C3User', region :'us-east-2') {
             sh "kubectl config current-context"
-            sh "kubectl get services"
-        }
+            sh "kubectl config view"
+            sh "kubectl apply -f ./blue-controller.json"
       }
     }
 }
