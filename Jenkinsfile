@@ -28,8 +28,7 @@ node {
       dir ('./') {
         withAWS(credentials: 'C3User', region: 'us-east-2') {
             sh "kubectl config current-context"
-            sh "kubectl get nodes"
-            sh "kubectl get pods"
+            sh "kubectl get svc"
         }
       }
     }
