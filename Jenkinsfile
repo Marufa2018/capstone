@@ -28,7 +28,6 @@ node {
         withAWS(credentials: 'C3User', region :'us-east-2') {
             sh "kubectl config current-context"
             sh "kubectl config view"
-            sh "kubectl apply -f ./blue-controller.json"
       }
     }
 }
