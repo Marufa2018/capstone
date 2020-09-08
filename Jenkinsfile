@@ -1,6 +1,4 @@
 node {
-    def registry1 = 'mars20/testblueimage'
-    def registry2 = 'mars20/testgreenimage'
     stage('Checking out git repo') {
       echo 'Checkout...'
       checkout scm
@@ -29,7 +27,7 @@ node {
       echo 'Deploying to AWS EKS...'
       dir ('./') {
         withAWS(credentials: 'C3User', region: 'us-west-2') {
-            sh "aws eks --region us-west-2 update-kubeconfig --name bn-prod"
+            sh "aws eks --region us-west-2 update-kubeconfig --name pod"
             sh "kubectl apply -f blue/blue-controller.json"
             sh "kubectl apply -f green/green-controller.json"
             sh "kubectl apply -f ./blue-green-service.json"
