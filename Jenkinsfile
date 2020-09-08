@@ -23,8 +23,8 @@ node {
           sh 'docker push mars20/testgreenimage'
       }
     }
-    stage('Kubernetes Cluster') {
-      echo 'Kubernetes Cluster Listing...'
+    stage('Kubernetes Deployment') {
+      echo 'Kubernetes Cluster ...'
         withAWS(credentials: 'C3User', region :'us-east-2') {
             sh "kubectl config current-context"
             sh "kubectl config view"
