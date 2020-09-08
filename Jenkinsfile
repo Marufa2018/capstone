@@ -29,7 +29,7 @@ node {
       echo 'Deploying to AWS EKS...'
       dir ('./') {
         withAWS(credentials: 'C3User', region: 'us-west-2') {
-            sh "kubectl set image deployment/pod pod=mars20/testblueimage:latest")
+            sh "kubectl set image deployment/pod pod=mars20/testblueimage:latest"
             sh "kubectl get nodes"
             sh "kubectl get pods"
         }
