@@ -1,5 +1,7 @@
 ## Capstone- Cloud DevOps
 
+Github repository link: https://github.com/Marufa2018/capstone
+
 ## Set Up Pipeline
 
 * Create Github repository with project code.
@@ -51,6 +53,6 @@
     * kubectl get svc
 
     Update the service to redirect to green by changing the selector to  app=green
-    
+
     * kubectl apply -f ./blue-green-service.json (after making the above changes)
     * kubectl get svc (now the color of page should have changed)
