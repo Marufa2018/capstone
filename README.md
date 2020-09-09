@@ -32,21 +32,21 @@
 4. Create a repository on GitHub
 5. Configure Jenkins to communicate with AWS and Docker
 6. Create an k8s cluster on EKS 
-    #./eks_cluster.sh
+    * ./eks_cluster.sh
 7. Create different stages in the Jenkinsfile
 8. Make sure that you run
     aws configure
 9. Make sure that the user which you use to login to Jenkins server has sudo privileges otherwise you will get errors with docker commands
-Once done then simply follow the below
-    #./run_docker.sh (For the blue image)
-    #./upload_docker.sh (upload the blue image to docker hub)
-    #./run_docker.sh (For the green image)
-    #./upload_docker.sh (upload the green image to docker hub)
-Ensure EKS is running # eksctl get clusters
-    #kubectl apply -f ./blue-controller.json (create replication controller for blue)
-    #kubectl apply -f ./green-controller.json (create replication controller for green)
-    #kubectl apply -f ./blue-green-service.json (create the service)
-    #kubectl get svc
-Update the service to redirect to green by changing the selector to  app=green
-    #kubectl apply -f ./blue-green-service.json (after making the above changes)
-    #kubectl get svc (now the color of page should have changed)
+    Once done then simply follow the below
+    *  ./run_docker.sh (For the blue image)
+    * ./upload_docker.sh (upload the blue image to docker hub)
+    * ./run_docker.sh (For the green image)
+    * ./upload_docker.sh (upload the green image to docker hub)
+    Ensure EKS is running # eksctl get clusters
+    * kubectl apply -f ./blue-controller.json (create replication controller for blue)
+    * kubectl apply -f ./green-controller.json (create replication controller for green)
+    * kubectl apply -f ./blue-green-service.json (create the service)
+    * kubectl get svc
+    Update the service to redirect to green by changing the selector to  app=green
+    * kubectl apply -f ./blue-green-service.json (after making the above changes)
+    * kubectl get svc (now the color of page should have changed)
